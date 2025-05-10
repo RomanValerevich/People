@@ -1,7 +1,7 @@
 public class PersonBuilder {
     private String name;
     private String surname;
-    private int age;
+    private Integer age;
     private String address;
 
     public PersonBuilder setName(String name) throws IllegalArgumentException {
@@ -34,7 +34,7 @@ public class PersonBuilder {
         Person person;
         if (name == null || surname == null)
             throw new IllegalStateException("Имя и фамилия не могут быть пустыми");
-        if (age <= 0){
+        if (age == null) {
             person = new Person(name, surname);
         } else {
             person = new Person(name, surname, age);

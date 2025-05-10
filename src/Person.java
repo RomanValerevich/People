@@ -4,22 +4,25 @@ import java.util.OptionalInt;
 public class Person {
     protected final String name;
     protected final String surname;
-    protected int age;
+    protected Integer age;
     protected String address;
+
 
     public Person(String name, String surname) {
         this.name = name;
         this.surname = surname;
+
     }
 
-    public Person(String name, String surname, int age) {
+    public Person(String name, String surname, Integer age) {
         this.name = name;
         this.surname = surname;
         this.age = age;
+
     }
 
     public boolean hasAge() {
-        return age >= 0;
+        return age != null;
     }
 
     public boolean hasAddress() {
@@ -35,12 +38,13 @@ public class Person {
     }
 
     public OptionalInt getAge() {
-        return OptionalInt.of(age);
+        return hasAge() ? OptionalInt.of(age) : OptionalInt.empty();
     }
 
     public String getAddress() {
         return address;
     }
+
 
     public void setAddress(String address) {
         this.address = address;
@@ -51,7 +55,7 @@ public class Person {
     }
 
     public PersonBuilder newChildBuilder() {
-        return new PersonBuilder().setSurname(surname).setAddress(address);
+        return new PersonBuilder().setSurname(surname).setAddress(address).setAge(0);
     }
 
     @Override
